@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "142997154579",
+    "project_id": "grandlight-a1948",
+    "storage_bucket": "grandlight-a1948.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142997154579:android:29b80815cbb194184508e6",
+        "android_client_info": {
+          "package_name": "com.new.grand.light"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142997154579-003fn4b2lcbopko1rgi3omnegskojuvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx6zX8XWjI282f-RypGYFqnbvHJ6bB8hQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142997154579-003fn4b2lcbopko1rgi3omnegskojuvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142997154579:android:1a33752a10bc1fce4508e6",
+        "android_client_info": {
+          "package_name": "orikzor.uz.bozor.chandlier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142997154579-003fn4b2lcbopko1rgi3omnegskojuvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx6zX8XWjI282f-RypGYFqnbvHJ6bB8hQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142997154579-003fn4b2lcbopko1rgi3omnegskojuvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
