@@ -4,6 +4,7 @@ import 'package:chandlier/bloc/category/category_state.dart';
 import 'package:chandlier/data/models/category/category_model.dart';
 import 'package:chandlier/ui/auth/widgets/global_button.dart';
 import 'package:chandlier/ui/auth/widgets/global_text_fields.dart';
+import 'package:chandlier/utils/ui_utils/error_message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,6 +40,9 @@ class _UpdateCategoryScreenState extends State<UpdateCategoryScreen> {
         listener: (context,state){
           if (state is CategorySuccessState) {
             Navigator.pop(context);
+          }
+          if(state is CategoryErrorState){
+            showErrorMessage(message: state.errorText, context: context);
           }
         },
         builder: (context, state) {

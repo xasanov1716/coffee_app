@@ -1,6 +1,8 @@
 import 'package:chandlier/bloc/category/category_bloc.dart';
+import 'package:chandlier/bloc/checkout/checkout_bloc.dart';
 import 'package:chandlier/bloc/product/product_bloc.dart';
 import 'package:chandlier/cubit/auth/auth_cubit.dart';
+import 'package:chandlier/data/local/storage/storage_repo.dart';
 import 'package:chandlier/data/repositories/auth_repository.dart';
 import 'package:chandlier/provider/order_provider.dart';
 import 'package:chandlier/ui/splash/splash_screen.dart';
@@ -15,6 +17,7 @@ import 'service/service_locator.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await StorageRepository.getInstance();
   getItSetup();
   runApp(const App());
 }
@@ -32,6 +35,7 @@ class App extends StatelessWidget {
           providers: [
             BlocProvider(create: (context)=>CategoryBloc()),
             BlocProvider(create: (context)=>ProductBloc()),
+            BlocProvider(create: (context)=>CheckoutBloc()),
             BlocProvider(
                 create: (context) => AuthCubit(context.read<AuthRepository>()))
           ],

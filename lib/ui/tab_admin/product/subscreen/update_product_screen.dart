@@ -11,6 +11,7 @@ import 'package:chandlier/ui/auth/widgets/global_text_fields.dart';
 import 'package:chandlier/ui/widgets/network_image.dart';
 import 'package:chandlier/utils/colors/app_colors.dart';
 import 'package:chandlier/utils/size/screen_size.dart';
+import 'package:chandlier/utils/ui_utils/error_message_dialog.dart';
 import 'package:chandlier/utils/ui_utils/loading_dialog.dart';
 import 'package:chandlier/utils/util_function/upload_image.dart';
 import 'package:flutter/material.dart';
@@ -56,12 +57,15 @@ class _UpdateProductState extends State<UpdateProduct> {
       appBar: AppBar(
         backgroundColor: AppColors.c_0C1A30,
         elevation: 0,
-        title: const Text('Add Product'),
+        title: const Text('Update Product'),
       ),
       body: BlocConsumer<ProductBloc, ProductState>(
         listener: (context, state) {
           if (state is ProductSuccessState) {
             Navigator.pop(context);
+          }
+          if(state is ProductErrorState){
+            showErrorMessage(message: state.errorText, context: context);
           }
         },
         builder: (context, state) {
@@ -179,7 +183,7 @@ class _UpdateProductState extends State<UpdateProduct> {
                   ),
                 ),
                 GlobalButton(
-                    title: 'Add Product',
+                    title: 'Update Product',
                     onTap: () {
                       if (name.text.isNotEmpty &&
                           price.text.isNotEmpty &&
@@ -209,7 +213,6 @@ class _UpdateProductState extends State<UpdateProduct> {
     description.clear();
     super.dispose();
   }
-
   void showBottomSheetDialog() {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -219,7 +222,7 @@ class _UpdateProductState extends State<UpdateProduct> {
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: const Color(0xFF674D3F),
-            borderRadius: BorderRadius.only(
+            borderRadius:  BorderRadius.only(
               topLeft: Radius.circular(16.r),
               topRight: Radius.circular(16.r),
             ),
@@ -232,17 +235,16 @@ class _UpdateProductState extends State<UpdateProduct> {
                   _getFromGallery();
                   Navigator.pop(context);
                 },
-                leading: Icon(
-                  Icons.photo,
-                  color: AppColors.white,
-                ),
-                title: Text(
-                  "Select from Gallery",
-                  style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 16.sp,
-                      fontFamily: 'Urbanist'),
-                ),
+                leading:  Icon(Icons.photo,color: AppColors.white,),
+                title:  Text("Select from Gallery",style: TextStyle(color: AppColors.white,fontSize: 16.sp,fontFamily: 'Urbanist'),),
+              ),
+              ListTile(
+                onTap: () {
+                  _getFromCamera();
+                  Navigator.pop(context);
+                },
+                leading:  Icon(Icons.camera_alt,color: AppColors.white,),
+                title:  Text("Select from Camera",style: TextStyle(color: AppColors.white,fontSize: 16.sp,fontFamily: 'Urbanist'),),
               )
             ],
           ),
@@ -261,7 +263,30 @@ class _UpdateProductState extends State<UpdateProduct> {
       showLoading(context: context);
       UniversalData data = await imageUploader(xFiles);
       image = data.data;
-      setState(() {});
+      setState(() {
+
+      });
+      if (context.mounted) {
+        hideLoading(context: context);
+      }
+    } else if (context.mounted) {
+      hideLoading(context: context);
+    }
+  }
+
+  Future<void> _getFromCamera() async {
+    XFile? xFiles = await picker.pickImage(
+      maxHeight: 512,
+      maxWidth: 512,
+      source: ImageSource.camera,
+    );
+    if (xFiles != null && context.mounted) {
+      showLoading(context: context);
+      UniversalData data = await imageUploader(xFiles);
+      image = data.data;
+      setState(() {
+
+      });
       if (context.mounted) {
         hideLoading(context: context);
       }

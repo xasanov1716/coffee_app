@@ -5,9 +5,11 @@ import 'package:chandlier/data/models/category/category_model.dart';
 import 'package:chandlier/service/service_locator.dart';
 import 'package:chandlier/ui/tab_admin/categories/add_category.dart';
 import 'package:chandlier/ui/tab_admin/categories/update_category.dart';
+import 'package:chandlier/utils/size/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../utils/colors/app_colors.dart';
 
@@ -58,7 +60,6 @@ class _CategoryScreenAdminState extends State<CategoryScreenAdmin> {
                           child: Container(
                             margin: EdgeInsets.all(10.r),
                             padding: EdgeInsets.all(5.r),
-                            height: 100,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.r),
                               color: Colors.white,
@@ -79,15 +80,7 @@ class _CategoryScreenAdminState extends State<CategoryScreenAdmin> {
                       },
                     ),
                   )
-                : Center(
-                    child: Text(
-                      "Empty!",
-                      style: TextStyle(
-                        color: Colors.black.withOpacity(0.2),
-                        fontSize: 24.sp,
-                      ),
-                    ),
-                  );
+                : Center(child: Lottie.asset('assets/lottie/empty.json'),);
           }
           if (snapshot.hasError) {
             return Center(

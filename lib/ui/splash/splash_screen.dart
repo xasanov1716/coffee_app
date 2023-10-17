@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../utils/size/screen_size.dart';
 import '../app/app.dart';
@@ -38,8 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
      width = MediaQuery.of(context).size.width;
      height = MediaQuery.of(context).size.height;
-    return const Scaffold(
-      body: Center(child: Text('Splash'),),
+    return  Scaffold(
+      body: Center(child: Lottie.asset('assets/lottie/background.json'),),
     );
   }
 }

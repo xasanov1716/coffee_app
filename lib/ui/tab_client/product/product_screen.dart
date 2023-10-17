@@ -1,6 +1,8 @@
+import 'package:chandlier/bloc/checkout/checkout_bloc.dart';
 import 'package:chandlier/data/firebase/category_service.dart';
 import 'package:chandlier/data/firebase/product_service.dart';
 import 'package:chandlier/data/models/category/category_model.dart';
+import 'package:chandlier/data/models/chekcout/checkout_model.dart';
 import 'package:chandlier/data/models/coffee/coffee_model.dart';
 import 'package:chandlier/service/service_locator.dart';
 import 'package:chandlier/ui/tab_client/product/product_detail_screen.dart';
@@ -10,6 +12,7 @@ import 'package:chandlier/utils/images/app_images.dart';
 import 'package:chandlier/utils/size/screen_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
@@ -93,7 +96,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ],
                         ),
                       )
-                    : const Center(child: Text("Empty!"));
+                    : const SizedBox();
               }
               if (snapshot.hasError) {
                 return Center(
@@ -154,7 +157,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                         ),
                       )
-                    : const Center(child: Text("Product Empty!"));
+                    : Center(child: Lottie.asset('assets/lottie/empty.json'),);
               }
               if (snapshot.hasError) {
                 return Center(

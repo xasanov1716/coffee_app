@@ -1,4 +1,5 @@
 import 'package:chandlier/cubit/auth/auth_cubit.dart';
+import 'package:chandlier/data/local/storage/storage_repo.dart';
 import 'package:chandlier/utils/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -46,6 +47,8 @@ class _ProfileScreenClientState extends State<ProfileScreenClient> {
                       ),
                       TextButton(
                         onPressed: () async {
+                          StorageRepository.deleteString('address');
+                          StorageRepository.deleteString('fullName');
                           context.read<AuthCubit>().logOutUser();
                           Navigator.pop(context);
                         },

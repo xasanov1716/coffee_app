@@ -11,6 +11,7 @@ import 'package:chandlier/ui/auth/widgets/global_text_fields.dart';
 import 'package:chandlier/ui/widgets/network_image.dart';
 import 'package:chandlier/utils/colors/app_colors.dart';
 import 'package:chandlier/utils/size/screen_size.dart';
+import 'package:chandlier/utils/ui_utils/error_message_dialog.dart';
 import 'package:chandlier/utils/ui_utils/loading_dialog.dart';
 import 'package:chandlier/utils/util_function/upload_image.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
         listener: (context, state) {
           if (state is ProductSuccessState) {
             Navigator.pop(context);
+          }
+          if(state is ProductErrorState){
+            showErrorMessage(message: state.errorText, context: context);
           }
         },
         builder: (context, state) {
